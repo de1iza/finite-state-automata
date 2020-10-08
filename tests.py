@@ -15,7 +15,7 @@ class TestAutomaton(unittest.TestCase):
         finite_states = [3]
         minimized = Automaton(states, transitions, finite_states)
         self.automaton.minimize()
-        self.assertEqual(self.automate, minimized)
+        self.assertEqual(self.automaton, minimized)
 
 
 if __name__ == "__main__":
