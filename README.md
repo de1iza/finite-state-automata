@@ -1,4 +1,5 @@
 # finite-state-automata
+Tool for working with finite state automata. Currently only full DFSA minimization is supported.
 # Usage
 ```python
 from automaton import Automaton
