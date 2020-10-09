@@ -13,6 +13,19 @@ def update_minimization_table(states, transitions, table=[]):
     return new_table
 
 
+def rename_states(states, transitions):
+    rename_states_dict = {}
+    states_cnt = 0
+    states_new = []
+    for i, transitions_from_i in zip(states, transitions):
+        key = str(i) + ''.join(map(str, transitions_from_i))
+        if key not in rename_states_dict:
+            rename_states_dict[key] = states_cnt
+            states_cnt += 1
+        states_new.append(rename_states_dict[key])
+    return states_new
+
+
 class Automaton:
     def __init__(self, states, transitions, finite_states=None):
         self.transitions = transitions
@@ -69,17 +82,8 @@ class Automaton:
             minimization_table = update_minimization_table(states,
                                                            transitions_new, minimization_table)
             transitions = list(transitions_new)
-            rename_states_dict = {}
-            states_cnt = 0
-            states_new = []
-            for i, transitions_from_i in zip(states, transitions):
-                key = str(i) + ''.join(map(str, transitions_from_i))
-                if key not in rename_states_dict:
-                    rename_states_dict[key] = states_cnt
-                    states_cnt += 1
-                states_new.append(rename_states_dict[key])
-            states_prev = list(states)
-            states = list(states_new)
+            states_prev = states
+            states = rename_states(states, transitions)
             if states == states_prev:
                 break
 
