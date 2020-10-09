@@ -7,7 +7,7 @@ states = [0, 1, 2, 3, 4, 5]
 transitions = [[1, 3], [2, 0], [4, 5], [5, 3], [1, 3], [2, 0]]
 finite_states = [3, 4]
 automaton = Automaton(states, transitions, finite_states) 
-automaton.minimize() 
+automaton.minimize() # minimizes full DFSA and dumps minimization table
 automaton.dump("out.txt") # dumps to file
 ```
 # Testing
